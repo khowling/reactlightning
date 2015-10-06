@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width" />
+  <link href="<%= SERVER_URL %>/resource/SLDS092/assets/styles/salesforce-lightning-design-system.css" rel="stylesheet" type="text/css" />
+  <script>
+    var buildprops = {server_url: "<%= SERVER_URL %>"};
+  </script>
+  <style>
+  .slds-list--custom.slds-has-cards > .slds-list__item {
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    background-clip: padding-box;
+    border: 1px solid #d8dde6;
+    margin: 0.5rem;
+}
+  </style>
+</head>
+
+<body>
+  <div id="app"></div>
+  <script src="js/app.<%= version %>.js"></script>
+</body>
+</html>
