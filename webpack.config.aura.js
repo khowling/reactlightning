@@ -2,7 +2,7 @@ module.exports = {
     entry: "./auraapp/app_aura.es6",
     output: {
         path: __dirname,
-        filename: "./build/aurabundle.js"
+        filename: "./aurabundle.js"
     },
     module: {
         loaders: [

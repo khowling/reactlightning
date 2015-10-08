@@ -39,7 +39,7 @@ gulp.task ("package:meta", function() {
 
 var statictasks = [];
 [
-    {name: pageName, src: './build/aurabundle.js'}
+    {name: pageName, src: './aurabundle.js'}
 ].forEach(function(sr) {
     statictasks.push(sr.name + ":res");
     gulp.task (sr.name + ":res", ['webpack:js'], function() {
@@ -61,7 +61,8 @@ var statictasks = [];
 });
 
 gulp.task('webpack:js', function(cb) {
-  return exec('npm run webpackaura', {shell: process.env.SHELL, env: {PATH: process.env.PATH, HOME: process.env.HOME, NODE_ENV:"test", BUILD_TARGET: "visualforce"}}, function (err, stdout, stderr) {
+  //return exec('npm run webpackaura', {shell: process.env.SHELL, env: {PATH: process.env.PATH, HOME: process.env.HOME, NODE_ENV:"test", BUILD_TARGET: "visualforce"}}, function (err, stdout, stderr) {
+  return exec('webpack --colors --progress --config ./webpack.config.aura.js', function (err, stdout, stderr) {
       if (stdout) console.log('out : ' + stdout);
       if (stderr) console.log('err : ' +stderr);
       cb(err);

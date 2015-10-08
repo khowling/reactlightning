@@ -6,4 +6,4 @@ import 'babel-core/polyfill';
 import React, {Component} from 'react';
 import App from "./app.jsx";
 
- React.render(React.createElement(App, {buildprops: buildprops}), document.getElementById('app'));
+ React.render(React.createElement(App), document.getElementById('app'));
