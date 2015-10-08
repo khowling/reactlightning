@@ -12,7 +12,8 @@ export default class App extends Component {
    }
 
    render() {
-     return <EmployeeBoard/>
+     console.log ('App render');
+     return (<EmployeeBoard/>);
    }
  }
 App.propTypes = {

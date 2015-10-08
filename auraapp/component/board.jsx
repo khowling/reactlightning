@@ -10,7 +10,20 @@ export class Modal extends Component {
     <div>
       <div aria-hidden="false" role="dialog" className="slds-modal--large slds-modal slds-fade-in-open">
         <div className="slds-modal__container"  style={{width: "95%"}}>
-            {this.props.children}
+          <div className="slds-modal__container">
+            <div className="slds-modal__header">
+             <h2 className="slds-text-heading--medium">New Position Request</h2>
+             <button className="slds-button slds-modal__close" onClick={this._flowModal.bind(this, null)}>
+               <SvgIcon classOverride="slds-button__icon slds-button__icon--inverse slds-button__icon--large" spriteType="action" spriteName="close"/>
+               <span className="slds-assistive-text">Close</span>
+             </button>
+           </div>
+
+            <div className="slds-modal__content" style={{padding: "0.5em", minHeight: "400px"}}>
+              <iframe src="https://abihrpoc.my.salesforce.com/apex/positionflow" style={{height: "600px", width: "100%"}}/>
+            </div>
+            <div className="slds-modal__footer"></div>
+          </div>
         </div>
       </div>
       <div className="slds-modal-backdrop slds-modal-backdrop--open"></div>
@@ -19,7 +32,7 @@ export class Modal extends Component {
   }
 }
 
-class Employee extends Component {
+export class Employee extends Component {
   _navToForce(navProp) {
     let aura = AuraService.instance;
     let navObject = aura.getAttr(navProp);
@@ -32,7 +45,7 @@ class Employee extends Component {
   render() {
     let u = this.props.user;
     return (
-      <div className="slds-pill" style={{width: "100%", lineHeight: "inherit", marginTop: "10px" }}>
+      <div className="slds-pill" style={{width: "100%", lineHeight: "inherit"}}>
       <div className="slds-media slds-tile">
         <div className="slds-media__figure">
           <span className="slds-avatar slds-avatar--circle slds-avatar--small">
@@ -51,7 +64,7 @@ class Employee extends Component {
               </ul>
             </div>
             <div className="slds-dropdown-trigger">
-              <button className="slds-button slds-button--icon-border-filled" aria-haspopup="true">
+              <button className="slds-button slds-button--icon-border-filled" style={{marginLeft: "0"}}  aria-haspopup="true">
                 <SvgIcon classOverride="slds-button__icon" spriteType="utility" spriteName="down" small={true}/>
                 <span className="slds-assistive-text">Show More</span>
               </button>
@@ -78,12 +91,12 @@ class Employee extends Component {
   }
 }
 
-class PositionTile extends Component {
+export class PositionTile extends Component {
   render() {
     return (
-      <li className="slds-list__item" style={{width: "280px"}}>
+      <li className="slds-list__item" style={{width: "260px"}}>
         <div className="slds-tile slds-tile--board">
-          <p className="slds-tile__title slds-truncate">{this.props.title}</p>
+          <p className="slds-tile__title slds-truncate" style={{marginLeft: "8px", marginBottom: "8px"}} >{this.props.title}</p>
           {this.props.children}
         </div>
       </li>
@@ -94,19 +107,23 @@ class PositionTile extends Component {
 export class EmployeeBoard extends Component {
   constructor(props) {
     super(props);
-    this.state = {openFlow: false};
+    this.state = {users: [], openFlow: false};
   }
 
-  _flowModal(flow) {
-    this.setState({openFlow: flow});
+  _navToList(navProp) {
+    let aura = AuraService.instance;
+    let navObject = aura.getAttr(navProp);
+    if (navObject)
+      aura.fireEvent ("e.force:navigateToList",{ "scope": "ABI_Position__c", "listViewId": navObject});
+    else
+      alert ("No Request Type Specified, check Component Properties");
   }
 
   componentWillMount () {
-    console.log ('EmployeeBoard componentWillMount');
-    let arua = AuraService.instance;
-    if (arua.enabled) {
-      console.log ("Calling getTeam111");
+    let aura = AuraService.instance;
+    if (aura.enabled) {
       aura.callApex("getTeam").then(succval => {
+        console.log (`got results ${succval.length}`);
         this.setState({users: succval});
       }, e =>  { console.log ('reject error ' + e)}).catch(e => { console.log ('catch error ' + e)})
     } else
@@ -116,8 +133,6 @@ export class EmployeeBoard extends Component {
   render() {
     let users = this.state.users;
     return (
-    <span>
-
       <ul className="slds-list--custom slds-list--horizontal slds-wrap slds-has-cards slds-wrap">
         { users.map(u => { if (!u.Name.endsWith('*')) {
           return (
@@ -127,29 +142,9 @@ export class EmployeeBoard extends Component {
           );
         }})}
         <PositionTile key="new" title="[new position]">
-          <button className="slds-button slds-button--neutral" style={{width: "100%"}} onClick={this._flowModal.bind(this, "newposition")}>Create</button>
+          <button className="slds-button slds-button--inverse" style={{color: "white", width: "100%"}} onClick={this._navToList.bind(this, "newposition")}>Create</button>
         </PositionTile>
       </ul>
-
-      { this.state.openFlow &&
-        <Modal>
-          <div className="slds-modal__container">
-            <div className="slds-modal__header">
-             <h2 className="slds-text-heading--medium">New Position Request</h2>
-             <button className="slds-button slds-modal__close" onClick={this._flowModal.bind(this, null)}>
-               <SvgIcon classOverride="slds-button__icon slds-button__icon--inverse slds-button__icon--large" spriteType="action" spriteName="close"/>
-               <span className="slds-assistive-text">Close</span>
-             </button>
-           </div>
-
-            <div className="slds-modal__content" style={{padding: "0.5em", minHeight: "400px"}}>
-              <iframe src="https://abihrpoc.my.salesforce.com/apex/positionflow" style={{height: "600px", width: "100%"}}/>
-            </div>
-            <div className="slds-modal__footer"></div>
-          </div>
-        </Modal>
-      }
-    </span>
     )
   }
 }

@@ -5,7 +5,7 @@ export default class AuraService {
 
   constructor (component, A, ltngRequireSLDSUrl) {
     if (instance) {
-      throw "AuraService() only allow to construct once";
+      console.log ("AuraService() only allow to construct once");
     }
     this._auraComponent = component;
     this._auraA = A;
@@ -37,14 +37,13 @@ export default class AuraService {
 
   /* fire Aura event */
   callApex(auraEnabledMethod) {
-    console.log(`callApex`);
     return new Promise( (resolve, reject) => {
       console.log(`AuraService callApex method ${auraEnabledMethod} ${this._auraComponent}`);
       let actionMethod = this._auraComponent.get(`c.${auraEnabledMethod}`);
       console.log(`AuraService callApex method ${actionMethod}`);
       actionMethod.setCallback(this, (actionResult) => {
         console.log (`callApex results: ${JSON.stringify(actionResult.getReturnValue())}`);
-        resolve(actionResult.getReturnValue());
+        return resolve(actionResult.getReturnValue());
       });
       //Enque the action
       this._auraA.enqueueAction(actionMethod);
