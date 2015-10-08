@@ -96,7 +96,9 @@ export class PositionTile extends Component {
     return (
       <li className="slds-list__item" style={{width: "260px"}}>
         <div className="slds-tile slds-tile--board">
-          <p className="slds-tile__title slds-truncate" style={{marginLeft: "8px", marginBottom: "8px"}} >{this.props.title}</p>
+          <p className="slds-tile__title slds-truncate" style={{marginLeft: "8px", marginBottom: "8px"}} >
+            {this.props.title}
+          </p>
           {this.props.children}
         </div>
       </li>

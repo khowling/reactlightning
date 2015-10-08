@@ -7,13 +7,11 @@ export default class App extends Component {
 
    constructor (props) {
     super(props);
-    console.log (`App constructor, aura sldsUrl:  ${props.sldsUrl}`);
     this.auraService = new AuraService(props.component,  props.auraAction, props.sldsUrl);
    }
 
    render() {
-     console.log ('App render');
-     return (<EmployeeBoard/>);
+     return <EmployeeBoard/>
    }
  }
 App.propTypes = {
