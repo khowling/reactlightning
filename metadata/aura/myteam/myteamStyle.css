@@ -1,0 +1,11 @@
+.THIS .slds-list--custom.slds-has-cards > .slds-list__item {
+    padding: 0.2rem;
+    border-radius: 0.25rem;
+    background-clip: padding-box;
+    border: 1px solid #d8dde6;
+    margin: 0.5rem;
+    
+    background-color: #00B6F2;
+    color: white;
+  
+}

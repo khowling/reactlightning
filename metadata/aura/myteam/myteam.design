@@ -1,0 +1,6 @@
+<design:component label="My Team">
+  <design:attribute name="newposition" label="New Position Object" description="API name of the New Position Object" />
+  <design:attribute name="termination" label="Termination Object" description="API name of the Termination  Object" />
+  <design:attribute name="leaverequest" label="Leave Request Object" description="API name of the Leave Request  Object" />
+  <design:attribute name="sldsUrl" label="Lightning Design System Url" description="Relative Url of SLDS" />
+</design:component>

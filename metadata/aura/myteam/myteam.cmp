@@ -1,0 +1,11 @@
+<aura:component implements="forceCommunity:availableForAllPageTypes" controller="myteamApex">
+   <aura:dependency resource="ltng:require"/>
+   <aura:attribute name="newposition" type="String" access="GLOBAL" default="ABI_Position__c" />
+   <aura:attribute name="termination" type="String" access="GLOBAL" default=""/>
+   <aura:attribute name="leaverequest" type="String" access="GLOBAL" default="ABI_Absence_Request__c"/>
+   <aura:attribute name="sldsUrl" type="String" access="GLOBAL" default="/sfsites/c/resource/SLDS092"/>
+   <aura:attribute name="ReactBooted" type="Boolean" access="GLOBAL"/>
+   <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    <ltng:require styles="/resource/SLDS092/assets/styles/salesforce-lightning-design-system-ltng.css" />
+   <div class="slds"><div aura:id="locator"/></div>
+</aura:component>
