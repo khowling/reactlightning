@@ -38,11 +38,8 @@ export default class AuraService {
   /* fire Aura event */
   callApex(auraEnabledMethod) {
     return new Promise( (resolve, reject) => {
-      console.log(`AuraService callApex method ${auraEnabledMethod} ${this._auraComponent}`);
       let actionMethod = this._auraComponent.get(`c.${auraEnabledMethod}`);
-      console.log(`AuraService callApex method ${actionMethod}`);
       actionMethod.setCallback(this, (actionResult) => {
-        console.log (`callApex results: ${JSON.stringify(actionResult.getReturnValue())}`);
         return resolve(actionResult.getReturnValue());
       });
       //Enque the action
