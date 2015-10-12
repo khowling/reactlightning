@@ -1,7 +1,8 @@
 <aura:component implements="forceCommunity:availableForAllPageTypes" controller="myteamApex">
    <aura:dependency resource="ltng:require"/>
-   <aura:attribute name="newposition" type="String" access="GLOBAL" default="ABI_Position__c" />
-   <aura:attribute name="termination" type="String" access="GLOBAL" default=""/>
+   <aura:attribute name="newposition" type="String" access="GLOBAL" default="00BB0000001XMTQ" />
+   <aura:attribute name="assignment" type="String" access="GLOBAL" default="https://abihrpoc.my.salesforce.com/apex/ABIEmployeeAssignmentChange?id=005B0000001eOrd"/>
+   <aura:attribute name="assignmentobj" type="String" access="GLOBAL" default="ABI_Employee_Assignment_Change__c"/>
    <aura:attribute name="leaverequest" type="String" access="GLOBAL" default="ABI_Absence_Request__c"/>
    <aura:attribute name="sldsUrl" type="String" access="GLOBAL" default="/sfsites/c/resource/SLDS092"/>
    <aura:attribute name="ReactBooted" type="Boolean" access="GLOBAL"/>
