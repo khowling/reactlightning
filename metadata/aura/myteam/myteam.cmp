@@ -1,10 +1,11 @@
-<aura:component implements="forceCommunity:availableForAllPageTypes" controller="myteamApex">
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes" controller="myteamApex">
    <aura:dependency resource="ltng:require"/>
-   <aura:attribute name="newposition" type="String" access="GLOBAL" default="00BB0000001XMTQ" />
-   <aura:attribute name="assignment" type="String" access="GLOBAL" default="https://abihrpoc.my.salesforce.com/apex/ABIEmployeeAssignmentChange?id=005B0000001eOrd"/>
-   <aura:attribute name="assignmentobj" type="String" access="GLOBAL" default="ABI_Employee_Assignment_Change__c"/>
-   <aura:attribute name="leaverequest" type="String" access="GLOBAL" default="ABI_Absence_Request__c"/>
-   <aura:attribute name="sldsUrl" type="String" access="GLOBAL" default="/sfsites/c/resource/SLDS092"/>
+   <aura:attribute name="positionobj" type="String" access="GLOBAL" default="Case" />
+   <aura:attribute name="menu1label" type="String" access="GLOBAL" default="Leave Request"/>
+   <aura:attribute name="menu1obj" type="String" access="GLOBAL" default="Case"/>
+   <aura:attribute name="menu2label" type="String" access="GLOBAL" default="Termination"/>
+   <aura:attribute name="menu2obj" type="String" access="GLOBAL" default="Case"/>
+   <aura:attribute name="sldsUrl" type="String" access="GLOBAL" default="/resource/SLDS092"/>
    <aura:attribute name="ReactBooted" type="Boolean" access="GLOBAL"/>
    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
     <ltng:require styles="/resource/SLDS092/assets/styles/salesforce-lightning-design-system-ltng.css" />

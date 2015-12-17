@@ -6,7 +6,7 @@
     "devHttps": false,
     "devHost": "localhost",
     "devPort": 8000,
-    "devAccount": "khowling@abi-lex.poc"
+    "devAccount": "khowling@dev.org"
   },
   "scripts": {
     "start": "node dev-server ./webpack.config",

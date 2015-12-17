@@ -32,7 +32,11 @@ gulp.task ("package:meta", function() {
         '       <members>*</members>\n'+
         '       <name>StaticResource</name>\n'+
         '   </types>\n'+
-        '   <version>34.0</version>\n'+
+        '   <types>\n'+
+        '      <members>myteam</members>\n'+
+        '      <name>AuraDefinitionBundle</name>\n'+
+        '   </types>\n'+
+        '   <version>35.0</version>\n'+
         '</Package>')
         .pipe(gulp.dest('./metadata'))
 });

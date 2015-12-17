@@ -46,6 +46,10 @@ export class Employee extends Component {
     else
       alert ("No Request Type Specified, check Component Properties");
   }
+  _getLabel(prop) {
+    let aura = AuraService.instance;
+    return aura.getAttr(prop);
+  }
 
   _employeeAction (aruaattr, title) {
     this.props.employeeAction(aruaattr, title, this.props.user);
@@ -80,9 +84,9 @@ export class Employee extends Component {
                 </button>
                 <div className="slds-dropdown slds-dropdown--left slds-dropdown--actions slds-dropdown--menu">
                   <ul className="slds-dropdown__list" role="menu">
-                    <li id="menu-13-0" href="#" className="slds-dropdown__item"><a onClick={this._navToForce.bind(this, "termination")} className="slds-truncate" role="menuitem">Termination</a></li>
-                    <li id="menu-14-1" href="#" className="slds-dropdown__item"><a onClick={this._employeeAction.bind(this, "assignment", "Assignment Change")} className="slds-truncate" role="menuitem">Assignment Change</a></li>
-                    <li id="menu-15-2" href="#" className="slds-dropdown__item"><a onClick={this._navToForce.bind(this, "leaverequest")} className="slds-truncate" role="menuitem">Leave Request</a></li>
+                    <li id="menu-13-0" href="#" className="slds-dropdown__item"><a onClick={this._navToForce.bind(this, "menu1obj")} className="slds-truncate" role="menuitem">{this._getLabel('menu1label')}</a></li>
+              { /*      <li id="menu-14-1" href="#" className="slds-dropdown__item"><a onClick={this._employeeAction.bind(this, "assignment", "Assignment Change")} className="slds-truncate" role="menuitem">Assignment Change</a></li> */ }
+                    <li id="menu-15-2" href="#" className="slds-dropdown__item"><a onClick={this._navToForce.bind(this, "menu2obj")} className="slds-truncate" role="menuitem">{this._getLabel('menu2label')}</a></li>
                   </ul>
                 </div>
               </div>
@@ -120,7 +124,14 @@ export class EmployeeBoard extends Component {
     super(props);
     this.state = {users: [], openFlow: false};
   }
-
+  _navToForce(navProp) {
+    let aura = AuraService.instance;
+    let navObject = aura.getAttr(navProp);
+    if (navObject)
+      aura.fireEvent ("e.force:createRecord",{ "entityApiName": navObject});
+    else
+      alert ("No Request Type Specified, check Component Properties");
+  }
   _navToNewPositionList(navProp) {
     let aura = AuraService.instance;
     let navObject = aura.getAttr(navProp);
@@ -140,7 +151,7 @@ export class EmployeeBoard extends Component {
       if (gotopass) {
         let navObject = aura.getAttr("assignmentobj");
         if (navObject)
-          aura.fireEvent ("e.force:navigateToList",{ "scope": navObject});
+          aura.fireEvent ("e.force:navigateToList",{ "scope": navObject, "listViewId": "00BB0000001Y93G"});
         else
           alert ("No Request Type Specified, check Component Properties");
         }
@@ -171,7 +182,7 @@ export class EmployeeBoard extends Component {
             );
           }})}
           <PositionTile key="new" title="[new position]">
-            <button className="slds-button slds-button--inverse" style={{color: "white", width: "100%"}} onClick={this._navToNewPositionList.bind(this, "newposition")}>Create</button>
+            <button className="slds-button slds-button--inverse" style={{color: "white", width: "100%"}} onClick={this._navToForce.bind(this, "positionobj")}>Create</button>
           </PositionTile>
         </ul>
 

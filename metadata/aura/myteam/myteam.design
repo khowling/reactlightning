@@ -1,7 +1,8 @@
 <design:component label="My Team">
-  <design:attribute name="newposition" label="New Position FilterId" description="API name of the New Position Object" />
-    <design:attribute name="assignment" label="Assignment Flow Url" description="API name of the Termination  Object" />
-  <design:attribute name="assignmentobj" label="Assignment Object" description="API name of the Termination  Object" />
-  <design:attribute name="leaverequest" label="Leave Request Object" description="API name of the Leave Request  Object" />
+  <design:attribute name="positionobj" label="Position Object" description="API name of the Position Object to create" />
+  <design:attribute name="menu1label" label="Menu 1 Label" description="Label of the 1st menu action" />
+  <design:attribute name="menu1obj" label="Menu 1 Object" description="API name of the New Object to create" />
+  <design:attribute name="menu2label" label="Menu 2 Label" description="Label of the 2nd menu action" />
+  <design:attribute name="menu2obj" label="Menu 2 Object" description="API name of the New Object to create" />
   <design:attribute name="sldsUrl" label="Lightning Design System Url" description="Relative Url of SLDS" />
 </design:component>

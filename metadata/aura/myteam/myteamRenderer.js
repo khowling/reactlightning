@@ -7,13 +7,13 @@
 	render : function(cmp, helper) {
         var ret = this.superRender();
         console.log ('Renderer: render: ' + JSON.stringify(ret));
-        
+
         var content = document.createElement("DIV");
      	$A.render(cmp.get("v.body"), content);
         // Convert CDATA content to HTML - security???
         var el = cmp.find("locator").getElement();
         el.innerHTML = content.innerText;
-        
+
         return ret;
     },
 	rerender : function(cmp, helper) {
@@ -31,7 +31,9 @@
     unrender: function(cmp, helper) {
         console.log ('Renderer: unrender');
         var el = cmp.find("locator").getElement();
+				try {
         cmp.get("v.React").unmountComponentAtNode(el);
+			} catch (e) { console.log ('unmount error'); }
 		this.superUnrender();
     }
 })
